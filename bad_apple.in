@@ -1,0 +1,39 @@
+units           metal
+atom_style      atomic
+dimension       2
+boundary        p p p
+
+# Define a crystal/grid spacing (e.g. lattice spacing ~ 1.8 Angstroms)
+lattice         sq 1.86
+region          box block 0 480 0 360 -0.5 0.5 units box
+create_box      1 box
+
+create_atoms    1 region box
+mass            1 12.011
+
+pair_style      lj/cut 2.5
+pair_coeff      1 1 0.05 1.0
+
+neighbor        2.0 bin
+neigh_modify    delay 0 every 1 check yes
+
+# 🛑 DE-CLASH PARTICLES BEFORE TIME EVOLUTION
+minimize        1.0e-4 1.0e-6 500 5000
+reset_timestep  0
+
+fix		2d all enforce2d
+
+# Custom Bad Apple steering fix ✨
+fix             BA all bad_apple bad_apple.mp4 50 5.0 480 360
+
+# Damped dynamics with displacement limit
+fix             lang all langevin 300.0 300.0 0.1 99999
+fix             nve all nve/limit 0.1
+
+thermo          100
+thermo_style    custom step temp pe ke press
+
+dump            1 all custom 50 bad_apple_sim.lammpstrj id type x y z
+
+timestep        0.001
+run             325000

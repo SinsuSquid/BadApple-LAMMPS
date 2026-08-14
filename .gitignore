@@ -1,0 +1,6 @@
+*.mp4
+*log*
+*.lammpstrj
+lmp
+Simple/
+lammps-22Jul2025/
