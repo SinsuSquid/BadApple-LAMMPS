@@ -22,13 +22,14 @@ class FixBadApple : public Fix {
  private:
   cv::VideoCapture cap;
   int every;                // Update frame every N timesteps
-  double k_spring;          // Harmonic trap force constant
+  double k_spring;          // Trapping well force constant
   int width, height;        // Grid resolution
   double x_scale, y_scale;  // Physical dimension scaling
   uchar threshold_val;
 
-  // Cached target coordinates for active frame
-  std::vector<std::pair<double, double>> target_coords;
+  // Cached frame buffers ✨
+  cv::Mat binary;
+  cv::Mat dist_map;
 
   bool load_next_frame();
 };

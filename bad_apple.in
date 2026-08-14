@@ -27,13 +27,15 @@ fix		2d all enforce2d
 fix             BA all bad_apple bad_apple.mp4 50 5.0 480 360
 
 # Damped dynamics with displacement limit
-fix             lang all langevin 300.0 300.0 0.1 99999
+fix             lang all langevin 3000.0 3000.0 0.1 424242
 fix             nve all nve/limit 0.1
 
 thermo          100
 thermo_style    custom step temp pe ke press
 
-dump            1 all custom 50 bad_apple_sim.lammpstrj id type x y z
+# dump            1 all custom 50 bad_apple_sim.lammpstrj id type x y z
+dump            1 all xyz 50 bad_apple_sim.xyz
+
 
 timestep        0.001
 run             325000
