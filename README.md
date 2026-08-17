@@ -99,11 +99,11 @@ From [`bad_apple.in`](file:///home/bgkang/Projects/BadApple-LAMMPS/bad_apple.in)
 | :--- | :--- | :--- |
 | **Dimensions** | $480 \times 360$ Å (2D) | Matches $480 \times 360$ pixel grid aspect ratio |
 | **Number of Atoms** | 100,000 | Randomly seeded carbon atoms ($m = 12.011$ g/mol) |
-| **Pair Potential** | `yukawa 1.0 4.0` | Screened Coulomb potential ($\kappa = 1.0\text{ \AA}^{-1}, r_c = 4.0\text{ \AA}$) |
-| **Pair Coeff** | `1 1 5.0 4.0` | Repulsive energy prefactor $A = 5.0\text{ eV}\cdot\text{\AA}$ |
+| **Pair Potential** | `yukawa 1.0 4.0` | Screened Coulomb potential ($\kappa = 1.0\text{ Å}^{-1}, r_c = 4.0\text{ Å}$) |
+| **Pair Coeff** | `1 1 5.0 4.0` | Repulsive energy prefactor $A = 5.0\text{ eV}\cdot\text{Å}$ |
 | **Fix Bad Apple** | `bad_apple.mp4 100 5.0 480 360` | Video path, update every 100 steps, $k_{\text{spring}} = 5.0$, $480\times 360$ res |
 | **Thermostat** | `langevin 2500 2500 0.1 424242` | Damping friction with $\tau_{\text{damp}} = 0.1\text{ ps}$ at $T = 2500\text{ K}$ |
-| **Integrator** | `nve/limit 0.1` | NVE with maximum displacement capped at $0.1\text{ \AA/step}$ |
+| **Integrator** | `nve/limit 0.1` | NVE with maximum displacement capped at $0.1\text{ Å/step}$ |
 | **Timestep** | $0.001\text{ ps}$ ($1\text{ fs}$) | Integration timestep in `metal` units |
 | **Output** | `dump 1 all xyz 50 bad_apple_sim.xyz` | Writes trajectory every 50 steps |
 
@@ -125,7 +125,7 @@ To visualize and render the output trajectory [`bad_apple_sim.xyz`]:
 
 1. Open **[OVITO](https://www.ovito.org/)**.
 2. Load `bad_apple_sim.xyz`.
-3. Adjust particle radius (e.g. $0.6 - 0.9\text{ \AA}$) and color scheme (e.g., white particles on a black background).
+3. Adjust particle radius (e.g. $0.6 - 0.9\text{ Å}$) and color scheme (e.g., white particles on a black background).
 4. Export the animation as a video or GIF.
 
 ---
