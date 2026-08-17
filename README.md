@@ -1,6 +1,6 @@
-# BadApple-LAMMPS 🍎
+# 🍎 BadApple-LAMMPS
 
-Render the iconic **Bad Apple!!** shadow art video using real-time Molecular Dynamics (MD) simulations in [**LAMMPS**](https://github.com/lammps/lammps) via a custom steering fix and OpenCV distance fields.
+[**Bad Apple!!**](https://youtu.be/FtutLA63Cp8) but it's on real-time Molecular Dynamics (MD) simulations in [**LAMMPS**](https://github.com/lammps/lammps) via a custom steering fix and [OpenCV](https://github.com/opencv/opencv) distance fields.
 
 ## Preview
 
@@ -13,16 +13,15 @@ Render the iconic **Bad Apple!!** shadow art video using real-time Molecular Dyn
 Instead of simply setting atom positions frame-by-frame, **BadApple-LAMMPS** simulates 100,000 interacting particles inside a 2D Yukawa fluid driven by a dynamically evolving potential well:
 
 1. **Video Ingestion & Silhouette Processing**:
-   For each frame from `bad_apple.mp4`, the custom fix (`fix_bad_apple`) converts the image to grayscale, resizes it to match the box aspect ratio ($480 \times 360$), and applies binary thresholding.
+   For each frame from `bad_apple.mp4`, the custom fix (`fix_bad_apple`) converts the image to grayscale, resizes it to match the box aspect ratio ($e.g.$ $480 \times 360$), and applies binary thresholding.
 2. **Euclidean Distance Transform (EDT)**:
    Using `cv::distanceTransform`, a 2D scalar field $d(x, y)$ is computed representing the Euclidean distance from any background point to the nearest silhouette boundary.
 3. **Dynamic Steering Force**:
-   At every MD timestep, atoms outside the white silhouette experience a restoring force along the negative gradient of the distance field:
-   $$\mathbf{F}_{\text{steering}} = -k_{\text{spring}} \nabla d(x, y)$$
+   At every MD timestep, atoms outside the white silhouette experience a restoring force along the negative gradient of the distance field: $\mathbf{F}_{\text{steering}} = -k_{\text{spring}} \nabla d(x, y)$
    This pulls particles smoothly into the silhouette shape.
-4. **Interatomic Repulsion & Fluid Packing**:
+5. **Interatomic Repulsion & Fluid Packing**:
    Inside the silhouette, particles interact via a screened Coulomb (Yukawa) repulsive pair potential (`pair_style yukawa`), preventing atom overlap and creating uniform fluid-like packing.
-5. **Damped Langevin Dynamics**:
+6. **Damped Langevin Dynamics**:
    A strong Langevin thermostat dissipates kinetic energy quickly so atoms conform cleanly to moving contours without excessive oscillation or runaway velocities.
 
 ---
