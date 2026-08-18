@@ -7,7 +7,7 @@ boundary        p p p
 region          box block 0 480 0 360 -0.5 0.5 units box
 create_box      1 box
 
-create_atoms    1 random 100000 424242 box
+create_atoms    1 random 75000 424242 box
 mass            1 12.011
 
 # Pure electrostatic/screened Coulomb repulsion!
@@ -27,14 +27,14 @@ fix		2d all enforce2d
 fix             BA all bad_apple bad_apple.mp4 100 5.0 480 360
 
 # Damped dynamics with displacement limit
-fix             lang all langevin 2500.0 2500.0 0.1 424242
-fix             nve all nve/limit 0.1
+fix             lang all langevin 2000.0 2000.0 0.1 424242
+fix             nve all nve/limit 0.3
 
 thermo          100
 thermo_style    custom step temp pe ke press
 
-dump            1 all xyz 50 bad_apple_sim.xyz
+dump            1 all xyz 100 bad_apple_sim.xyz
 
 
 timestep        0.001
-run             325000
+run             657000
