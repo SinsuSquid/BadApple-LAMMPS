@@ -3,6 +3,6 @@
 *.lammpstrj
 *.xyz
 
-lmp
+lmp*
 Simple/
 lammps-22Jul2025/
