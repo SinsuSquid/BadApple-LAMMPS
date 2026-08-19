@@ -1,4 +1,4 @@
-# 🍎 BadApple-LAMMPS
+# 🍎 [BadApple-LAMMPS](https://youtu.be/iAOHLZOBsHA)
 
 [**Bad Apple!!**](https://youtu.be/FtutLA63Cp8) but it's on real-time Molecular Dynamics (MD) simulations in [**LAMMPS**](https://github.com/lammps/lammps) via a custom steering fix and [OpenCV](https://github.com/opencv/opencv) distance fields.
 
